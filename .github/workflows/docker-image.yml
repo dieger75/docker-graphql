@@ -35,6 +35,8 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
     - name: Build Docker Image
+      env:
+        NEW_VERSION: ${{ steps.versions.outputs.version }}
       run: |
         docker build -t devgeraldo/docker-graphql:$NEW_VERSION .
         docker build -t devgeraldo/docker-graphql:latest .
